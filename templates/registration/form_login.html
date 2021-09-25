@@ -1,0 +1,29 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'login.css' %}" />
+<div class="container" >
+        <div class="card card-container">
+          <div class="login-label"><h2>ログイン</h2></div>
+<form method="post" lang="ja" class="form-signin">
+    {% csrf_token %}
+    {% if form.non_field_errors %}
+        <a id="error">{{ form.non_field_errors }}</a>
+    {% endif %}
+    <p>
+    {% for field in form %}
+        {% if forloop.counter == 1 %}
+        <div class="username-label" >ユーザ名：</div>
+        <div class="text-center">
+            <a id="username">{{ field }}</a>
+            </div>
+        {% elif forloop.counter == 2 %}
+        <div class="password-label" >パスワード：</div>
+        <div class="text-center">
+          <a id="password">{{ field }}</a>
+          </div>
+        {% endif %}
+    {% endfor %}
+    <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">ログイン</button>
+    <p><a href="{% url 'password_reset' %}" class="forgot-password" >パスワードを忘れた場合</a></p>
+</form>
+</div>
+    </div>

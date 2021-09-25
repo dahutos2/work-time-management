@@ -1,0 +1,17 @@
+{% extends "registration/base_login.html" %}
+{% block main %}
+{% include "registration/form_login.html" %}
+{% endblock %}
+{% block extrajs %}
+    <script>
+        $("#error").html(
+        '<p style="color: red">ユーザー名または、<br>パスワードが間違ってます。</p>'
+        );
+        $("#username").addClass(
+        'form-control'
+        );
+        $("#password").addClass(
+        'form-control'
+        );
+    </script>
+{% endblock %}

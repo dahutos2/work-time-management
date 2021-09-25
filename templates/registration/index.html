@@ -1,0 +1,10 @@
+{% extends "registration/base.html" %}
+{% block main %}
+<h1>会員ページ</h1>
+<p><a>{{ user.full_name }}さん、こんにちは！</a>
+  <a href="{% url 'user_update' user.id %}">編集</a></p>
+{% if user.is_staff %}
+<p>
+<a href="/dahutos-admin/">管理画面へ</a>
+{% endif %}
+{% endblock %}

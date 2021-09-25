@@ -1,0 +1,21 @@
+<form method="post" lang="ja">
+{% csrf_token %}
+{% for field in form %}
+  <p>
+    {{ field.label_tag }}<br>
+    {{ field }}<br>
+    {% if forloop.counter == 2 %}
+    <small style="color: grey"><b>・</b>パスワードは最低 8 文字以上必要です。<br>
+    <b>・</b>パスワードを他の個人情報と似せすぎてはなりません。<br>
+    <b>・</b>一般的に使用されるパスワードにすることはできません。<br>
+    <b>・</b>パスワードを完全に数値にすることはできません。</small>
+    {% elif forloop.counter == 3 %}
+    <small style="color: grey">確認のため、再度パスワードを入力してください。</small>
+    {% endif %}
+    {% for error in field.errors %}
+      <p style="color: red">{{ error }}</p>
+    {% endfor %}
+{% endfor %}
+<p>
+<input type="submit" value="{{ submit_label }}" />
+</form>

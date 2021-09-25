@@ -1,0 +1,9 @@
+django
+gunicorn
+whitenoise
+dj-database-url
+python-dotenv
+psycopg2-binary==2.8.6
+django-admin-rangefilter
+jpholiday
+python-dateutil

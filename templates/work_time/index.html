@@ -1,0 +1,59 @@
+{% extends "work_time/base.html" %}
+{% block main %}
+{% load tag_library %}
+<h2>勤務一覧</h2>
+<table border="1" class="table table-striped">
+  <th>勤務</th>
+  <th>時間</th>
+{% for object in object_list|slice:":10" %}
+<tr>
+<td>{{ object.date|date:"Y/m/d" }}({{ object.date | date:"l"}})
+{{ object.start_time }}〜{{ object.end_time }}</td>
+<td>{{ object|work_time }}</td>
+{% empty %}
+<td>勤務がありません</td><td></td>
+{% endfor %}
+</tr>
+</table>
+{% include "work_time/pagination.html" %}
+<h2>勤務合計</h2>
+<table class="table text-center">
+  {% if not range == '〜'　%}
+  <tr class="table-info">
+    <th>{{ range }}</th><th></th>
+    </tr>
+  {% endif %}
+  <tr class="table-info">
+  <th>
+  <form method="POST">
+    {% csrf_token %}
+        <input type="date" id="startdate" name="startdate"　placeholder="年/月/日" >
+        〜
+        <input type="date" id="enddate" name="enddate" placeholder="年/月/日" >
+        <th>
+      <input type="submit" class="btn btn-info btn-lg" value="検索">
+    </form>
+    </th>
+    </tr>
+    </table>
+{% if objects|date_filter:date_range%}
+  <table class="table text-center">
+    <tr>
+      <th>合計時間</th>
+      <th>深夜合計</th>
+      <th>残業合計</th>
+    </tr>
+    <tr>
+      {% for object in objects|date_filter:date_range|work_time_sum %}
+      <td>{{ object }}</td>
+      {% endfor %}
+      </tr>
+    </table>
+{% else %}
+<table class="table text-center">
+  <tr>
+    <th class="table-danger">勤務がありません。</th>
+    </tr>
+  </table>
+{% endif %}
+{% endblock %}
