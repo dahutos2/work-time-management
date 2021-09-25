@@ -1,4 +1,6 @@
 {% load tag_library %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'month.css' %}" />
 <a href="{% url 'mywork' month_previous.year month_previous.month month_previous.day %}">前月</a>
 {{ month_current | date:"Y年m月" }}
 <a href="{% url 'mywork' month_next.year month_next.month month_next.day %}">次月</a>
@@ -34,6 +36,9 @@
             {% if day|day_my_shift:user %}
             <div class="maru size_normal pink1">
               <div class="letter3">
+            {% else %}
+            <div>
+              <div>
             {% endif %}
                  <a href="{% url 'mywork' day.year day.month day.day %}">
                    {% if month_current.month != day.month %}
@@ -43,29 +48,7 @@
                    {% endif %}
                   </a>
                 </div>
-</div>
-<style>
-  .maru {
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50%;
-    flex-flow: column;
-    vertical-align: top;
-  }
-  .size_normal{
-  width: 30px;
-  height: 30px;
-}
-.letter3 {
-  font-size: 1em;
-}
-.pink1 {
-  color: black;
-  border: 1px solid black;
-}
-</style>
-
+              </div>
                 </td>
             {% endfor %}
         </tr>
