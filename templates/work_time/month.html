@@ -42,7 +42,7 @@
             {% endif %}
                  <a href="{% url 'mywork' day.year day.month day.day %}">
                    {% if month_current.month != day.month %}
-                        {{ day | date:"m/d" }}
+                   {{ day | date:"m/d" }}
                    {% else %}
                         {{ day.day }}
                    {% endif %}

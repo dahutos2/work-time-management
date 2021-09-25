@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views.generic import ListView
-from django.views.generic.edit import UpdateView, CreateView
+from django.views.generic.edit import UpdateView, CreateView, DeleteView
 from .forms import SignUpForm, BS4ScheduleForm
 from .models import User, Worktime
 from django.urls import reverse_lazy
@@ -93,6 +93,16 @@ class Update(mixins.MonthCalendarMixin, UpdateView):
         if year:
             context['date'] = datetime.date(year=int(year), month=int(month), day=int(day))
         return context
+
+    def get(self, request, **kwargs):
+        if not Worktime.objects.get(id=self.kwargs['pk']).name==request.user:
+            return HttpResponse('不正なアクセスです。')
+        return super().get(request)
+
+class Delete(DeleteView):
+    model = Worktime
+    # 削除したあとに移動する先（トップページ）
+    success_url = "/work_time/"
 
     def get(self, request, **kwargs):
         if not Worktime.objects.get(id=self.kwargs['pk']).name==request.user:

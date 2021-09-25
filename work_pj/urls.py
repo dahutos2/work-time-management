@@ -20,5 +20,6 @@ urlpatterns = [
     path('work_time/', views.MyWork.as_view(), name='mywork'),
     path('work_time/<int:year>/<int:month>/<int:day>/', views.MyWork.as_view(), name='mywork'),
     path('update/<pk>', views.Update.as_view(), name="update"),
+    path('delete/<pk>', views.Delete.as_view(), name="delete"),
     path('work_index/', views.WorkIndex.as_view(), name='work_index'),
 ]
