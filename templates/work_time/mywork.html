@@ -4,7 +4,6 @@
             <hr>
           {% if date %}
             {{ date|date:"Y/m/d" }}({{ date | date:"l"}})
-          {% endif %}
               <form action="" method="POST">
                 {{ form.non_field_errors }}
                 {% for field in form %}
@@ -15,8 +14,7 @@
                 {% csrf_token %}
                 <button type="submit" class="btn btn-primary btn-block">送信</button>
             </form>
-        </div>
-    </div>
+          {% endif %}
 {% endblock %}
 
 

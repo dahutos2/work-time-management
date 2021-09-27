@@ -13,9 +13,12 @@ def jpholiday_judge(day):
    return val
 
 def time_count(start,end):
-    start_time = dtt.combine(dt.date.today(), start)
-    end_time = dtt.combine(dt.date.today(), end)
-    night_time = dtt.combine(dt.date.today(), dt.time(hour=22))
+    start_time = dtt.combine(dt.date(2000, 1, 1), start)
+    if end <= dt.time(hour=5):
+        end_time = dtt.combine(dt.date(2000, 1, 2), end)
+    else:
+        end_time = dtt.combine(dt.date(2000, 1, 1), end)
+    night_time = dtt.combine(dt.date(2000, 1, 1), dt.time(hour=22))
     if end_time >= night_time:
         end_time_night = end_time - night_time
         time_list = [end_time - start_time,end_time_night]
@@ -33,7 +36,7 @@ def work_time(object):
     start_time = object.start_time
     end_time = object.end_time
     night_time = dt.time(hour=22)
-    if end_time >= night_time:
+    if end_time >= night_time or end_time <= dt.time(hour=5):
         work_time = time_count(object.start_time,object.end_time)[0]
     else:
         work_time = time_count(object.start_time,object.end_time)
@@ -52,8 +55,8 @@ def work_time(object_list):
         start_time = object.start_time
         end_time = object.end_time
         night_time = dt.time(hour=22)
-        if end_time >= night_time:
-            time_list = time_count(object.start_time,object.end_time)
+        if end_time >= night_time or end_time <= dt.time(hour=5):
+            time_list = time_count(start_time,end_time)
             time_hour_sum += time_list[0][0]
             time_minutes_sum += time_list[0][1]
             night_hour_sum += time_list[1][0]
@@ -62,7 +65,7 @@ def work_time(object_list):
                 over_hour_sum += time_list[0][0] - 8
                 over_minutes_sum += time_list[0][1]
         else:
-            time_list = time_count(object.start_time,object.end_time)
+            time_list = time_count(start_time,end_time)
             time_hour_sum += time_list[0]
             time_minutes_sum += time_list[1]
             if time_list[0] >= 8:

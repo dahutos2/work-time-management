@@ -1,6 +1,7 @@
 from django.contrib.auth.forms import UserCreationForm
 from .models import User, Worktime
 from django import forms
+import datetime as dt
 
 class SignUpForm(UserCreationForm):
     class Meta:
@@ -34,13 +35,13 @@ class BS4ScheduleForm(forms.ModelForm):
     def clean_end_time(self):
         start_time = self.cleaned_data['start_time']
         end_time = self.cleaned_data['end_time']
-        if end_time <= start_time:
-            raise forms.ValidationError(
-                '終了時間は、開始時間よりも後にしてください'
-            )
+        if end_time > dt.time(hour=5):
+            if end_time <= start_time:
+                raise forms.ValidationError(
+                    '終了時間は、開始時間よりも後にしてください'
+                    )
         return end_time
 
 class SearchForm(forms.Form):
     startdate = forms.DateInput()
     enddate = forms.DateInput()
-    
