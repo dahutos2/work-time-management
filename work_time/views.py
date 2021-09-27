@@ -112,7 +112,7 @@ class Delete(DeleteView):
 class WorkIndex(ListView):
         # 一覧するモデルを指定 -> `object_list`で取得可能
     model = Worktime
-    template_name="work_time/index.html"
+    template_name="work_time/mywork_index.html"
     paginate_by = 5
 
     def get_queryset(self):
