@@ -1,1 +1,1 @@
-web: gunicorn work_pj.wsgi
+web: gunicorn config.wsgi

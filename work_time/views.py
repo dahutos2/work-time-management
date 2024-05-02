@@ -49,6 +49,7 @@ class MyWork(mixins.MonthCalendarMixin, generic.CreateView):
         day = self.kwargs.get('day')
         if year:
             context['date'] = datetime.date(year=int(year), month=int(month), day=int(day))
+        context['night_time'] = datetime.time(hour=5)
         return context
 
     def get(self, request, **kwargs):
@@ -92,6 +93,7 @@ class Update(mixins.MonthCalendarMixin, UpdateView):
         day = self.kwargs.get('day')
         if year:
             context['date'] = datetime.date(year=int(year), month=int(month), day=int(day))
+        context['night_time'] = datetime.time(hour=5)
         return context
 
     def get(self, request, **kwargs):
