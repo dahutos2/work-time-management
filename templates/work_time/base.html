@@ -1,6 +1,6 @@
 <!doctype HTML>
 {% load static %}
-<html>
+<html lang="ja">
     <head>
         <link rel="apple-touch-icon" sizes="180x180" href="{% static 'icon_shift.png' %}"/>
         <link rel="touch-icon" sizes="192x192" href="{% static 'icon_shift.png' %}"/>
@@ -30,7 +30,12 @@
        <div class="navbar-nav">
          <a class="nav-item nav-link" href="/work_time">勤務確認</a>
          <a class="nav-item nav-link" href="/work_index">勤務一覧</a>
-      <a class="nav-item nav-link" href="{% url 'logout' %}"><font color="red">ログアウト</font></a>
+         <form action="{% url 'logout' %}" method="post" class="nav-item nav-link">
+          {% csrf_token %}
+          <button class="btn btn-link p-0 text-danger"type="submit">
+            ログアウト
+          </button>
+        </form>
     </div>
   </div>
 </nav>

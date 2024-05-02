@@ -11,7 +11,7 @@ else
 fi
 
 # Djangoプロジェクトを起動
-# python manage.py runserver
+python manage.py runserver
 
 # 仮想環境を非アクティブにする
 # deactivate
