@@ -1,7 +1,20 @@
 ## アプリ紹介
-- このアプリはDjango勉強用のアプリです
+- このアプリは従業員の勤務時間を管理するアプリです。
 ## 機能
-### 画像の投稿
-![post](images/post.png)
-### 画像の確認
-![confirm](images/confirm.png)
+### ユーザ登録
+#### ログイン画面
+![login](images/login.png)
+#### ユーザ登録画面
+![register](images/register.png)
+### 勤務時間の入力/確認
+#### 月毎の勤務の確認
+![detail](images/detail.png)
+#### 勤務時間の入力
+![update](images/update.png)
+#### 勤務一覧の確認
+![list](images/list.png)
+### 管理画面
+#### ユーザー
+![user](images/user.png)
+#### 勤務時間
+![admin](images/admin.png)

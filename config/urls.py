@@ -10,7 +10,7 @@ admin.site.index_title = "メニュー"
 admin.site.unregister(Group)
 
 urlpatterns = [
-    path("dahutos-admin/", admin.site.urls),
+    path("admin/", admin.site.urls),
     path("", login_required(views.Index.as_view()), name="index"),
     path("", include("django.contrib.auth.urls")),
     path("sign-up/", views.SignUpView.as_view(), name="signup"),
